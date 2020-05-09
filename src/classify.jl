@@ -6,6 +6,6 @@ categories, returns arrays of categories (index along first dimension) of
 highest score.
 """
 function classify(scores::AbstractArray)
-	cindices = argmaxdropfirst(A)
+	cindices = argmaxdropfirst(scores)
 	first.(Tuple.(cindices))
 end
