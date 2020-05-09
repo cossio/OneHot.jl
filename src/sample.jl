@@ -12,10 +12,10 @@ samples from the categorical distribution `P[:,*]`.
 function sample(rng::AbstractRNG, P::AbstractArray)
     q = size(P, 1)
     result = falses(size(P))
-	ps = columns(P)
-	a = categorical_rand.(rng, ps)
-    for i in CartesianIndices(ps)
-		a = categorical_rand(rng, ps[i])
+	pcols = columns(P)
+    for i in CartesianIndices(pcols)
+		ps = pcols[i]
+		a = categorical_rand(rng, ps)
         result[a, i] = 1
     end
     return result
@@ -43,9 +43,10 @@ Randomly draw `i` with probability `ps[i]`.
 function categorical_rand(rng::AbstractRNG, ps)
 	i = 0
 	u = rand()
-	for (i,p) in enumerate(ps)
+	for p in ps
 		u -= p
-		u ≤ 0 && return i
+		i += 1
+		u ≤ 0 && break
 	end
 	return i
 end

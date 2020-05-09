@@ -1,4 +1,3 @@
-
 """
     argmaxdrop(A; dims)
 
@@ -34,3 +33,10 @@ for higher-dimensional arrays.
 function columns(A::AbstractArray)
 	[A[:,I] for I in CartesianIndices(axes(A)[2:end])]
 end
+
+"""
+	ntuple(Val(N))
+
+Constructs the tuple `(1, 2, ..., N)`.
+"""
+@generated Base.ntuple(::Val{N}) where {N} = ntuple(identity, Val(N))
