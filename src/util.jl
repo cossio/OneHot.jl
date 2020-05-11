@@ -14,7 +14,7 @@ end
 argmax of `A` over its first `N` dimensions and drops them. By default `N = 1`.
 """
 function argmaxdropfirst(A::AbstractArray, ::Val{N} = Val(1)) where {N}
-	dims = ntuple(Val(N))
+	dims = tuplen(Val(N))
 	argmaxdrop(A; dims=dims)
 end
 
@@ -35,8 +35,8 @@ function columns(A::AbstractArray)
 end
 
 """
-	ntuple(Val(N))
+	tuplen(Val(N))
 
 Constructs the tuple `(1, 2, ..., N)`.
 """
-@generated Base.ntuple(::Val{N}) where {N} = ntuple(identity, Val(N))
+@generated tuplen(::Val{N}) where {N} = ntuple(identity, Val(N))
