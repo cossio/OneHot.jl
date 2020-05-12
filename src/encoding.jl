@@ -1,9 +1,9 @@
 """
     encode(A, q)
 
-Takes `A` of size (*) and returns a BitArray of shape (q, *) that
-has zeros everywhere, except at the positions (A[*], *) which have ones.
-If not given `q` (the number of classes) defaults to maximum(A).
+Takes an integer array `A` of size (*) and returns a BitArray of shape
+`(q, *)` that has zeros everywhere, except at the positions (A[*], *) which
+have ones. If not given `q` (the number of classes) defaults to maximum(A).
 This is similar to the PyTorch function (but column-major):
 	https://pytorch.org/docs/stable/nn.functional.html#one-hot.
 """
