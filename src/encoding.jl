@@ -23,15 +23,6 @@ Takes a binary array `X` of size (q, *) and returns an integer array `A` of
 size (*) such that `onehot_encode(A, q) == X`.
 """
 function decode(X::AbstractArray)
-	q = size(X, 1)
-	A = zeros(Int, ntuple(i -> size(X, i + 1), Val(ndims(X) - 1)))
-	for i in CartesianIndices(A)
-		for a = 1:q
-			if Bool(X[a,i])
-				A[i] = a
-				break
-			end
-		end
-	end
-	return A
+	I = argmaxdrop(X; dims=1)
+	return first.(Tuple.(I))
 end
