@@ -16,7 +16,7 @@ function sample(rng::AbstractRNG, P::AbstractArray)
     for i in CartesianIndices(pcols)
 		ps = pcols[i]
 		a = categorical_rand(rng, ps)
-        result[a, i] = 1
+        result[a, i] = true
     end
     return result
 end
