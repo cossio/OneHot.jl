@@ -40,3 +40,8 @@ end
 Constructs the tuple `(1, 2, ..., N)`.
 """
 @generated tuplen(::Val{N}) where {N} = ntuple(identity, Val(N))
+
+function xlogx(x::Number)
+    result = x * log(x)
+    return ifelse(iszero(x), zero(result), result)
+end

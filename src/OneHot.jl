@@ -2,7 +2,7 @@ module OneHot
 
 include("encoding.jl")
 include("sample.jl")
-include("classify.jl")
+include("stats.jl")
 include("util.jl")
 
 end
