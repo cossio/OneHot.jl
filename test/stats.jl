@@ -15,4 +15,5 @@ end
     @test sum(p) ≈ 1
     @test all(p .> 0)
     @test s ≈ -sum(p .* log.(p))
+    @inferred OneHot.entropy(A)
 end
