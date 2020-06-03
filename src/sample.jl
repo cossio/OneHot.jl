@@ -12,10 +12,9 @@ samples from the categorical distribution `P[:,*]`.
 function sample(rng::AbstractRNG, P::AbstractArray)
     q = size(P, 1)
     result = zeros(Bool, size(P))
-	pcols = columns(P)
-    for i in CartesianIndices(pcols)
-		ps = pcols[i]
-		a = categorical_rand(rng, ps)
+	colind = CartesianIndices(Base.tail(size(P)))
+    for i in colind
+		a = categorical_rand(rng, P[:,i])
         result[a, i] = true
     end
     return result
