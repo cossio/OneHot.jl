@@ -11,7 +11,7 @@ samples from the categorical distribution `P[:,*]`.
 """
 function sample(rng::AbstractRNG, P::AbstractArray)
     q = size(P, 1)
-    result = falses(size(P))
+    result = zeros(Bool, size(P))
 	pcols = columns(P)
     for i in CartesianIndices(pcols)
 		ps = pcols[i]

@@ -18,7 +18,6 @@ P = OneHot.softmax(logits)
 @inferred OneHot.sample_from_logits(logits)
 R = OneHot.sample_from_logits(logits)
 @test size(R) == size(P)
-@test R isa BitArray
 for k=1:4, j=1:3
     @test count(R[:,j,k]) == 1
 end
@@ -26,7 +25,6 @@ end
 @inferred OneHot.sample(P)
 R = OneHot.sample(P)
 @test size(R) == size(P)
-@test R isa BitArray
 for k=1:4, j=1:3
     @test count(R[:,j,k]) == 1
 end
