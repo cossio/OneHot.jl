@@ -28,10 +28,11 @@ end
 	columns(A)
 
 Returns an array over the columns of `A` (as views). Similar to `eachcol` but
-for higher-dimensional arrays.
+for higher-dimensional arrays. In general column (i,j,k,...) is defined as
+`A[:,i,j,k,...]`.
 """
 function columns(A::AbstractArray)
-	[A[:,I] for I in CartesianIndices(axes(A)[2:end])]
+	[A[:,I] for I in CartesianIndices(Base.tail(axes(A)))]
 end
 
 """
