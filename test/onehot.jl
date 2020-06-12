@@ -29,7 +29,6 @@ for k=1:4, j=1:3
     @test count(R[:,j,k]) == 1
 end
 
-
 @testset "categorical_rand" begin
     Random.seed!(84)
     ps = (0.2, 0.5, 0.3)

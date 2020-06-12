@@ -7,14 +7,7 @@ have ones. If not given `q` (the number of classes) defaults to maximum(A).
 This is similar to the PyTorch function (but column-major):
 	https://pytorch.org/docs/stable/nn.functional.html#one-hot.
 """
-function encode(A::AbstractArray{<:Integer}, q::Integer = maximum(A))
-	@assert all(1 .≤ A .≤ q)
-    X = falses(q, size(A)...)
-    for i in CartesianIndices(A)
-        X[A[i], i] = true
-    end
-    return X
-end
+encode(A::AbstractArray{<:Integer}, q::Integer = maximum(A)) = OneHotArray(A, q)
 
 """
 	decode(X)

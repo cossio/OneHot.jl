@@ -10,12 +10,12 @@ samples from the categorical distribution `P[:,*]`.
 function sample(rng::AbstractRNG, P::AbstractArray)
     q = size(P, 1)
     result = zeros(Bool, size(P))
-	colind = CartesianIndices(Base.tail(size(P)))
+	colind = CartesianIndices(tail(size(P)))
+	c = Array{Int}(undef, tail(size(P)))
     for i in colind
-		a = categorical_rand(rng, P[:,i])
-        result[a, i] = true
+		c[i] = categorical_rand(rng, P[:,i])
     end
-    return result
+	return OneHotArray(c, q)
 end
 sample(p::AbstractArray) = sample(GLOBAL_RNG, p)
 
@@ -28,7 +28,7 @@ random samples from the categorical distribution with logits `logits[:,*]`.
 """
 function sample_from_logits(rng::AbstractRNG, logits::AbstractArray)
 	p = softmax(logits)
-	sample(rng, p)
+	return sample(rng, p)
 end
 sample_from_logits(logits::AbstractArray) = sample_from_logits(GLOBAL_RNG, logits)
 
