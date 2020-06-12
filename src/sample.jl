@@ -12,7 +12,7 @@ function sample(rng::AbstractRNG, P::AbstractArray)
     result = zeros(Bool, size(P))
 	colind = CartesianIndices(tail(size(P)))
 	c = Array{Int}(undef, tail(size(P)))
-    for i in colind
+    @inbounds for i in colind
 		c[i] = categorical_rand(rng, P[:,i])
     end
 	return OneHotArray(c, q)
