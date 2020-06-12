@@ -1,5 +1,5 @@
 using OneHot, Test, Random
-using OneHot: argmaxdrop, argmaxdropfirst, tuplen
+using OneHot: argmaxdrop, argmaxdropfirst, tuplen, columns
 
 @testset "argmaxdrop" begin
 	@inferred argmaxdrop(randn(3,2,4); dims=2)
@@ -20,4 +20,13 @@ end
 @testset "tuplen" begin
     @inferred tuplen(Val(5))
     @test tuplen(Val(5)) == (1,2,3,4,5)
+end
+
+@testset "columns" begin
+	A = randn(4,5)
+	@test columns(A) == collect(eachcol(A))
+	@inferred columns(A)
+	A = randn(5,5,3)
+	@test vec(columns(A)) == collect(eachcol(reshape(A,5,15)))
+	@inferred columns(A)
 end

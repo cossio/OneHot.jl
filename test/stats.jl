@@ -6,6 +6,12 @@ using OneHot, Test, Random
     for I in CartesianIndices(cl)
         @test maximum(A[:,I]) == A[cl[I],I]
     end
+
+    X = OneHotArray(rand(1:4,5,5), 4)
+    cl = OneHot.classify(X)
+    for I in CartesianIndices(cl)
+        @test maximum(X[:,I]) == X[cl[I],I]
+    end
 end
 
 @testset "entropy" begin
