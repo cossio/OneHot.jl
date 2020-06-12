@@ -17,7 +17,7 @@ Base.size(a::OneHotArray) = (a.q, size(a.c)...)
     @boundscheck checkbounds(a, i...)
     @inbounds first(i) == a.c[tail(i)...]
 end
-@inline function Base.getindex(a::OneHotArray, ::Colon, i::Int...) where {N_}
+@inline function Base.getindex(a::OneHotArray, ::Colon, i...) where {N_}
     @boundscheck checkbounds(a.c, i...)
     @inbounds OneHotArray(a.c[i...], a.q)
 end
@@ -27,7 +27,9 @@ OneHotMatrix = OneHotArray{2,Vector{Int}}
 OneHotVecOrMat = Union{OneHotVector, OneHotMatrix}
 
 function Base.:*(A::AbstractMatrix, B::OneHotVecOrMat)
-    size(A,2) == size(B,1) || throw(DimensionMismatch("A has dimensions $(size(A)) but B has dimensions $(size(B))"))
+    if size(A,2) ≠ size(B,1)
+        throw(DimensionMismatch("A has dimensions $(size(A)) but B has dimensions $(size(B))"))
+    end
     return A[:, B.c]
 end
 
