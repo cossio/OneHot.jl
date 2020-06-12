@@ -1,5 +1,3 @@
-import Random: GLOBAL_RNG, AbstractRNG
-
 export sample, sample_from_logits
 
 """
