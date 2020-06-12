@@ -11,6 +11,8 @@ for i in CartesianIndices(A), a = 1:q
 end
 @inferred OneHot.decode(X)
 @test OneHot.decode(X) == A
+@test OneHot.decode(Array(X)) == A
+@inferred OneHot.decode(Array(X))
 
 logits = randn(5,3,4)
 P = OneHot.softmax(logits)
