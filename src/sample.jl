@@ -57,7 +57,8 @@ Like sample_from_logits, but using the Gumbel trick.
 """
 function sample_from_logits_gumbel(rng::AbstractRNG, logits::AbstractArray)
 	z = logits .+ randgumbel.(rng)
-	return classify(z)
+	c = classify(z)
+	return OneHotArray(c, size(logits, 1))
 end
 sample_from_logits_gumbel(logits::AbstractArray) = sample_from_logits_gumbel(GLOBAL_RNG, logits)
 
