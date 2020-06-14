@@ -7,7 +7,7 @@ highest score.
 """
 function classify(scores::AbstractArray)
 	cindices = argmaxdropfirst(scores)
-	first.(Tuple.(cindices))
+	return first.(Tuple.(cindices))
 end
 classify(A::OneHotArray) = A.c
 

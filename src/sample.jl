@@ -49,3 +49,16 @@ function categorical_rand(rng::AbstractRNG, ps)
 	return i
 end
 categorical_rand(ps) = categorical_rand(GLOBAL_RNG, ps)
+
+"""
+	sample_from_logits_gumbel([rng=GLOBAL_RNG], logits)
+
+Like sample_from_logits, but using the Gumbel trick.
+"""
+function sample_from_logits_gumbel(rng::AbstractRNG, logits::AbstractArray)
+	z = logits .+ randgumbel.(rng)
+	return classify(z)
+end
+sample_from_logits_gumbel(logits::AbstractArray) = sample_from_logits_gumbel(GLOBAL_RNG, logits)
+
+randgumbel(rng::AbstractRNG = GLOBAL_RNG) = -log(-log(rand(rng)))
