@@ -1,5 +1,5 @@
 using OneHot, Test, Random
-using OneHot: argmaxdrop, argmaxdropfirst, tuplen, columns
+using OneHot: argmaxdrop, argmaxdropfirst, tuplen, columns, softmax, softmax_online
 
 @testset "argmaxdrop" begin
 	@inferred argmaxdrop(randn(3,2,4); dims=2)
@@ -29,4 +29,14 @@ end
 	A = randn(5,5,3)
 	@test vec(columns(A)) == collect(eachcol(reshape(A,5,15)))
 	@inferred columns(A)
+end
+
+@testset "softmax" begin
+	xs = randn(5,5,3)
+	@test softmax(xs; dims=2) ≈ exp.(xs) ./ sum(exp.(xs); dims=2)
+end
+
+@testset "softmax online" begin
+	xs = randn(5,5,3)
+	@test softmax(xs; dims=1) ≈ softmax_online(xs)
 end
