@@ -6,6 +6,7 @@ A = rand(1:q, 4,5,6)
 @inferred OneHot.encode(A, q)
 X = OneHot.encode(A, q)
 @test size(X) == (q, size(A)...)
+@test vec(X) == [X[i] for i=1:length(X)]
 for i in CartesianIndices(A), a = 1:q
     @test X[a,i] == (A[i] == a)
 end
@@ -43,4 +44,11 @@ end
     for (s,c) in samples
         @test c ./ N ≈ ps[s] atol=1e-2
     end
+end
+
+@testset "convert to BitArray" begin
+    X = rand(1:4,10,5)
+    X_ = OneHot.encode(X,4)
+    @test Array(X_) == X_
+    @test BitArray(X_) == X_
 end

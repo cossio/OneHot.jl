@@ -13,7 +13,7 @@ end
 OneHotArray(c, q = maximum(c)) = OneHotArray{ndims(c) + 1, typeof(c)}(c, q)
 Base.size(a::OneHotArray) = (a.q, size(a.c)...)
 
-@inline function Base.getindex(a::OneHotArray{N}, i::Int...) where {N}
+@inline function Base.getindex(a::OneHotArray{N}, i::Vararg{Int,N}) where {N}
     @boundscheck checkbounds(a, i...)
     @inbounds first(i) == a.c[tail(i)...]
 end
