@@ -61,4 +61,4 @@ function sample_from_logits_gumbel(rng::AbstractRNG, logits::AbstractArray)
 end
 sample_from_logits_gumbel(logits::AbstractArray) = sample_from_logits_gumbel(GLOBAL_RNG, logits)
 
-randgumbel(rng::AbstractRNG = GLOBAL_RNG) = -log(-log(rand(rng)))
+randgumbel(rng::AbstractRNG = GLOBAL_RNG) = -log(randexp(rng))
