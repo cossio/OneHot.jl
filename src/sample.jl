@@ -8,10 +8,10 @@ Given a probability array `P` of size `(q, *)`, returns an array
 samples from the categorical distribution `P[:,*]`.
 """
 function sample(rng::AbstractRNG, P::AbstractArray)
-    q = size(P, 1)
+	q = size(P, 1)
 	colind = CartesianIndices(tail(size(P)))
 	c = Array{Int}(undef, tail(size(P)))
-    @inbounds for i in colind
+	@inbounds for i in colind
 		ps = @view P[:,i]
 		c[i] = categorical_rand(rng, ps)
     end
