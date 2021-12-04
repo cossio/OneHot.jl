@@ -9,7 +9,6 @@ samples from the categorical distribution `P[:,*]`.
 """
 function sample(rng::AbstractRNG, P::AbstractArray)
     q = size(P, 1)
-    result = zeros(Bool, size(P))
 	colind = CartesianIndices(tail(size(P)))
 	c = Array{Int}(undef, tail(size(P)))
     @inbounds for i in colind
