@@ -34,14 +34,14 @@ end
 
 @testset "categorical_rand" begin
     Random.seed!(84)
-    ps = (0.2, 0.5, 0.3)
+    ps = [0.2, 0.5, 0.3]
     samples = Dict{Int,Int}()
     N = 1000000
     for _ = 1:N
         s = categorical_rand(ps)
         samples[s] = get(samples, s, 0) + 1
     end
-    for (s,c) in samples
+    for (s, c) in samples
         @test c ./ N ≈ ps[s] atol=1e-2
     end
 end
