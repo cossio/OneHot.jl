@@ -13,7 +13,7 @@ encode(A::AbstractArray{<:Integer}, q::Integer = maximum(A)) = OneHotArray(A, q)
     decode(X)
 
 Takes a binary array `X` of size (q, *) and returns an integer array `A` of
-size (*) such that `onehot_encode(A, q) == X`.
+size (*) such that `OneHot.encode(A, q) == X`.
 """
 function decode(X::AbstractArray)
     I = argmaxdrop(X; dims=1)

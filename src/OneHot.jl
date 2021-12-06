@@ -1,7 +1,7 @@
 module OneHot
 
+using Random
 using Base: tail, front
-using Random: GLOBAL_RNG, AbstractRNG, randexp
 
 export OneHotArray
 

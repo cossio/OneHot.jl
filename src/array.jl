@@ -1,8 +1,10 @@
 struct OneHotArray{N,A} <: AbstractArray{Bool,N}
     c::A   # classes
     q::Int # number of classes
-    function OneHotArray{N,A}(c::A, q::Int) where {N,A<:Union{Int64,AbstractArray{Int64}}}
-        N === ndims(c) + 1 || throw(DimensionMismatch("N must be $(ndims(c) + 1); got N = $N"))
+    function OneHotArray{N,A}(c::A, q::Int) where {N, A<:Union{Int64,AbstractArray{Int64}}}
+        if N !== ndims(c) + 1
+            throw(DimensionMismatch("N must be $(ndims(c) + 1); got N = $N"))
+        end
         for x in c
             x::Int
             1 ≤ x ≤ q || throw(ArgumentError("classes must be ∈ [1,$q]; got $x"))
@@ -22,9 +24,9 @@ end
     @inbounds OneHotArray(a.c[i...], a.q)
 end
 
-OneHotVector = OneHotArray{1,Int}
-OneHotMatrix = OneHotArray{2,Vector{Int}}
-OneHotVecOrMat = Union{OneHotVector, OneHotMatrix}
+const OneHotVector = OneHotArray{1,Int}
+const OneHotMatrix = OneHotArray{2,Vector{Int}}
+const OneHotVecOrMat = Union{OneHotVector, OneHotMatrix}
 
 function Base.:*(A::AbstractMatrix, B::OneHotVecOrMat)
     if size(A,2) ≠ size(B,1)
