@@ -5,7 +5,7 @@ Index of maximum elements of `A` over given `dims`, dropping the reduced `dims`.
 """
 function argmax_(A::AbstractArray; dims)
     indices = argmax(A; dims=dims)
-    dropdims(indices; dims=dims)
+    return dropdims(indices; dims=dims)
 end
 
 """
