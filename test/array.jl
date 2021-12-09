@@ -8,8 +8,8 @@ for i = 1:size(X,2)
 end
 
 A = randn(3,4)
-@test A * X == A[:, X.c]
-@inferred A * X
+@test A[:, X.c] == @inferred A * X
+@test A * X == A * Array(X)
 
 B = randn(3,3)
 @test_throws DimensionMismatch B * X
@@ -20,4 +20,11 @@ B = randn(3,3)
 for I in eachindex(X)
     i = Tuple(I)
     @test X[I] == (first(i) == X.c[tail(i)...])
+end
+
+@testset "convert to/from BitArray" begin
+    X = OneHotArray(rand(1:4, 10, 5), 4)
+    @test Array(X) == BitArray(X) == X
+    @test OneHotArray(BitArray(X)) == X
+    @test OneHotArray(X) == X
 end

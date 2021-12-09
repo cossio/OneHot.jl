@@ -1,7 +1,7 @@
 name = "OneHot"
 uuid = "460b0459-f81d-40f2-a460-3486927c7399"
 authors = ["Jorge Fernandez-de-Cossio-Diaz <j.cossio.diaz@gmail.com>"]
-version = "0.2.2"
+version = "0.3"
 
 [deps]
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
