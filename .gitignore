@@ -28,4 +28,8 @@ Manifest.toml
 # built sysimage
 JuliaSysimage.so
 
+# Things to profile locally
 profile/
+
+# files generated automatically by Literate.jl
+docs/src/literate/**/*.md
