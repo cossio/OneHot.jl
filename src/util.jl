@@ -21,8 +21,8 @@ end
 """
     decode(X)
 
-Takes a binary array `X` of size (q, *) and returns an integer array `A` of
-size (*) such that `OneHot.encode(A, 1:q) == X`.
+Returns an array `A` such that `OneHot.encode(A, 1:q) == X`.
+Here `q = size(X, 1)` is interpreted as the number of classes.
 """
 function decode(X::AbstractArray)
     I = argmax_(X; dims=1)

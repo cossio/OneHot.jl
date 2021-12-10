@@ -15,6 +15,7 @@ end
     for I in CartesianIndices(cl)
         @test maximum(A[:,I]) == A[cl[I],I]
     end
+    @test size(cl) == size(A)[2:end]
 
     X = OneHotArray(rand(1:4,5,5), 4)
     cl = OneHot.decode(X)
