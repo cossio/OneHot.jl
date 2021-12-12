@@ -28,7 +28,8 @@ This package implements efficient matrix multiply by a `OneHotArray`.
 @benchmark A * X setup=(A=randn(M,q); X=OneHotArray(rand(1:q, N), q))
 
 #=
-We can also check that these two codes are computing the same thing
+That's about 20x faster!
+We can also check that these two codes are computing the same thing.
 =#
 
 A = randn(M, q)
