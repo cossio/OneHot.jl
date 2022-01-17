@@ -1,4 +1,4 @@
-using OneHot
+using OneHot, Test
 using Base: tail, front
 
 X = OneHotArray(rand(1:4, 5), 4)
