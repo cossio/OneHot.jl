@@ -3,7 +3,7 @@ module OneHot
 using Random
 using Base: tail, front
 
-export OneHotArray
+export OneHotArray, OneHotVector, OneHotMatrix, OneHotVecOrMat
 
 include("array.jl")
 include("util.jl")
