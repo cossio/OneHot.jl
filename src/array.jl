@@ -9,7 +9,7 @@ struct OneHotArray{N,A} <: AbstractArray{Bool,N}
     q::Int
     function OneHotArray(c::Union{Int, AbstractArray{Int}}, q::Int = maximum(c))
         if !all(1 ≤ x ≤ q for x in c)
-            throw(ArgumentError("c must be ≥ 1 and ≤ $q; got $x"))
+            throw(ArgumentError("c must be ≥ 1 and ≤ $q; got $c"))
         end
         return new{ndims(c) + 1, typeof(c)}(c, q)
     end
