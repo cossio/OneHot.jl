@@ -1,6 +1,5 @@
-using SafeTestsets
-
-@safetestset "array" begin include("array.jl") end
-@safetestset "util" begin include("util.jl") end
-@safetestset "sum" begin include("sum.jl") end
-@safetestset "tensormul" begin include("tensormul.jl") end
+module aqua_tests include("aqua.jl") end
+module array_tests include("array.jl") end
+module util_tests include("util.jl") end
+module sum_tests include("sum.jl") end
+module tensormul_tests include("tensormul.jl") end

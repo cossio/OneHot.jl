@@ -1,10 +1,11 @@
-using OneHot, Test
+using OneHot: OneHotArray, decode
+using Test: @test, @testset, @inferred, @test_throws
 using Base: tail, front
 
 X = OneHotArray(rand(1:4, 5), 4)
 
 for i = 1:size(X,2)
-    @test OneHot.decode(X[:,i]) == X.c[i]
+    @test decode(X[:,i]) == X.c[i]
 end
 
 A = randn(3,4)

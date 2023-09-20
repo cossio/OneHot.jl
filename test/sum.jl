@@ -1,4 +1,5 @@
-using OneHot, Test
+using OneHot: OneHotArray
+using Test: @testset, @test
 
 @testset "sum" begin
     X = OneHotArray(rand(1:4, 5), 4)
