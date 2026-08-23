@@ -7,4 +7,6 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 Tullio = "bc48ee85-29a4-5162-ae0b-a64e1601d4bc"
 
 [compat]
-Aqua = "0.7"
+Aqua = "0.7, 0.8"
+Statistics = "1.11.1"
+Tullio = "0.3.9"
